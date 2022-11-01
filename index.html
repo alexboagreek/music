@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/icon/spotify_icon.png" type="img/png">
+    <link rel="stylesheet" href="css/style.css">
+    <title>MethEd Music - поиск музыкальных треков</title>
+</head>
+<body>
+    <header class="header">
+        <h1 class="visually-hidden">METHED.MUSIC APP - лучший сервис для воспроизведения музыки</h1>
+        <div class="header__container">
+            <img class="header__logo" src="assets/img/app-logo.svg" alt="methEd.music app logo">
+
+            <form class="search header__search">
+                <input class="search__input" type="search">
+                <button class="search__btn">
+                    <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" />
+                    </svg>
+                </button>
+                <button class="header__favorite-btn">
+                    <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5C22 12.28 18.6 15.36 13.45 20.04L12 21.35Z" />
+                    </svg>  
+                </button>
+            </form>
+        </div>
+    
+    </header>
+    <section class="catalog">
+        <h2 class="visually-hidden">Список треков</h2>
+        <div class="catalog__container">
+            <button class="catalog__item track">
+                <div class="track__img-wrap">
+                    <img 
+                        width="180"
+                        height="180"
+                        class="track__poster" 
+                        src="assets/img/track_1.jpg" 
+                        alt="The weekend - Save your tears" 
+                    >
+                </div>
+
+                <div class="track__info">
+                    <p class="track__title">Save your tears</p>
+                    <p class="track__artist">The weeknd</p>
+                </div>
+            </button>
+        </div>
+    </section>
+
+    <section class="player player_active">
+        <h2 class="visyally-hidden">Player</h2>
+        <div class="player__container">
+            <div class="player__track-info track__info">
+                <p class="track__info-title">Save your tears</p>
+                <p class="track__info-artist">The weeknd</p>
+            </div>
+            <div class="player__controller">
+                <button class="player__icon player__icon_stop"></button>
+                <button class="player__icon player__icon_prev"></button>
+                <button class="player__icon player__icon_pause"></button>
+                <button class="player__icon player__icon_next"></button>
+                <button class="player__icon player__icon_like"></button>
+            </div>
+
+            <div class="player__progress-wrap">
+                <div class="player__progress">
+                    <input class="plauer__progress-input" type="range" min="0" max="100" value="0">
+                </div>
+                <p class="player__time">
+                    <span class="player__time-passed">0:24</span>
+                    <span>/</span>
+                    <span class="player__time-total">4:31</span>
+                </p>
+            </div>
+            <div class="player__volume-wrap">
+                <div class="player__volume">
+                    <input class="player__volume-input" type="range" min="0" max="100" value="50">
+                </div>
+
+                <button class="player__icon player__icon_mute"></button>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
