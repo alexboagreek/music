@@ -101,6 +101,8 @@ const prev = document.querySelector('.player__controller_prev');
 const next = document.querySelector('.player__controller_next');
 const like = document.querySelector('.player__controller_like');
 const mute = document.querySelector('.player__controller_mute');
+const trackTitle = document.querySelector('.track__title');
+const trackArtist =document.querySelector('.track__artist');
 const playerProgressInput = document.querySelector('.player__progress-input');
 const playerTimePassed = document.querySelector('.player__time-passed');
 const playerTimeTotal =  document.querySelector('.player__time-total');
@@ -156,6 +158,10 @@ const playMusic = event => {
     });
 
     audio.src = track.mp3;
+
+    trackTitle.textContent = track.track;
+    trackArtist.textContent = track.artist;
+
     audio.play();
 
     pause.classList.remove('player__icon_play');
