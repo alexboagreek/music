@@ -14,6 +14,7 @@
 }
 
 .header__logo {
+    cursor: pointer;
     margin-right: 69px;
 }
 
