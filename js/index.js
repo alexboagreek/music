@@ -95,6 +95,9 @@ const prev = document.querySelector('.player__controller_prev');
 const next = document.querySelector('.player__controller_next');
 const like = document.querySelector('.player__controller_like');
 const mute = document.querySelector('.player__controller_mute');
+const playerProgressInput = document.querySelector('.player__progress-input');
+const playerTimePassed = document.querySelector('.player__time-passed');
+const playerTimeTotal =  document.querySelector('.player__time-total');
 
 
 const catalogAddBtn = document.createElement('button');
@@ -140,6 +143,7 @@ const playMusic = event => {
 
     audio.src = track.mp3;
     audio.play();
+
     pause.classList.remove('player__icon_play');
     player.classList.add('player_active');
 
@@ -150,11 +154,12 @@ const playMusic = event => {
     next.dataset.idTrack = dataMusic[nextTrack].id;
 
     for (let i = 0; i < tracks.length; i++) {
-        tracks[i].classList.remove('track_active');
+        if (id === tracks[i].dataset.idTrack) {
+            tracks[i].classList.add('track_active');
+        } else {
+            tracks[i].classList.remove('track_active');
+        }
     }
-
-    trackActive.classList.add('track_active');
-
 };
 
 const addHandlerTrack = () => {
@@ -172,6 +177,7 @@ pause.addEventListener('click', pausePlayer);
 stop.addEventListener('click', () => {
     audio.src = '';
     player.classList.remove('player_active');
+    document.querySelector('.track_active').classList.remove('track_active');
 });
 
 const createCard = (data) => {
@@ -217,6 +223,24 @@ const checkCount = (i = 1) => {
     }
 };
 
+const updateTime = () => {
+    const duration =  audio.duration;
+    const currentTime = audio.currentTime;
+    const progress = (currentTime / duration) * playerProgressInput.max;
+    playerProgressInput.value = progress ? progress : 0;
+
+    const minutesPassed = Math.floor(currentTime / 60) || '0';
+    const secondsPassed = Math.floor(currentTime % 60) || '0';
+
+    const minutesDuration = Math.floor(duration / 60) || '0';
+    const secondsDuration = Math.floor(duration % 60) || '0';
+
+    playerTimePassed.textContent = `${minutesPassed}:${secondsPassed < 10 ? '0' + secondsPassed : secondsPassed}`;
+    playerTimeTotal.textContent = 
+    `${minutesDuration}:${secondsDuration < 10 ? '0' + secondsDuration : secondsDuration}`;
+
+};
+
 const init = () => {
     renderCatalog(dataMusic);
     checkCount();
@@ -230,6 +254,16 @@ const init = () => {
 
     prev.addEventListener('click', playMusic);
     next.addEventListener('click', playMusic);
+
+    audio.addEventListener('ended', () => {
+        next.dispatchEvent(new Event('click', {bubbles: true}));
+    });
+
+    audio.addEventListener('timeupdate', updateTime);
+    playerProgressInput.addEventListener('change', () => {
+        const progress = playerProgressInput.value;
+        audio.currentTime = (progress / playerProgressInput.max) * audio.duration;
+    });
 };
 
 init();
