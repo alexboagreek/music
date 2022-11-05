@@ -62,11 +62,15 @@
     background-image: url('../assets/icon/like.svg');
 }
 
+.player__icon_like_active {
+    filter: drop-shadow(0 0 2px tomato);
+}
+
 .player__icon_mute {
     background-image: url('../assets/icon/volume.svg');
 }
 
-.player__icon_mite-off {
+.player__icon_mute-off {
     background-image: url('../assets/icon/mute.svg');
 }
 
